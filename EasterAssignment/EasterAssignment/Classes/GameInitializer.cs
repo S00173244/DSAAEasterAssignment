@@ -21,12 +21,26 @@ namespace EasterAssignment
             try
             {
                 Scene menuScene = new Scene("", Keys.Escape);
-                MenuItemSprite menu1 = new MenuItemSprite("S1", "", new Vector2());
-                
+                MenuItemSprite menu1 = new MenuItemSprite("MI1","Play", "", new Vector2());
+                MenuItemSprite menu2 = new MenuItemSprite("MI1", "HighScores", "", new Vector2());
+                MenuItemSprite menu3 = new MenuItemSprite("MI1", "Exit", "", new Vector2());
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("Error while creating Menu Scene : {0}", e.Message);
+
+            }
+
+
+            try
+            {
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while creating Play Scene : {0}", e.Message);
+                
             }
         }
         public void CreateMap()
