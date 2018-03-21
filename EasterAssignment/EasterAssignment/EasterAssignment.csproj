@@ -41,10 +41,18 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classes\MenuItem.cs" />
+    <Compile Include="Classes\SpriteClasses\BaseSprite.cs" />
+    <Compile Include="Classes\ServiceClasses\Camera.cs" />
+    <Compile Include="Classes\ServiceClasses\InputEngine.cs" />
+    <Compile Include="Classes\Map.cs" />
+    <Compile Include="Classes\SpriteClasses\Collectable.cs" />
+    <Compile Include="Classes\SpriteClasses\MenuItemSprite.cs" />
+    <Compile Include="Classes\SpriteClasses\PlayerSprite.cs" />
     <Compile Include="Classes\Scene.cs" />
     <Compile Include="Classes\SceneManager.cs" />
+    <Compile Include="Classes\SpriteClasses\SpriteWithBound.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Classes\GameInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

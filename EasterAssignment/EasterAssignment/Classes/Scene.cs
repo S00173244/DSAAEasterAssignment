@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,24 +9,16 @@ namespace EasterAssignment.Classes
 {
      public class Scene
     {
-        private string backgroundKey;
-        private IList<string> s;
-        public Scene(string keyForBackground)
+        public string BackgroundTextureKey { get; set; }
+        public List<BaseSprite> AllTheSpriteWithinTheScene { get; set; }
+        public Keys SceneActivateKey { get; set; }
+       
+        public Scene(string textureKeyForBackground,Keys keyToActivateScene)
         {
-            backgroundKey = keyForBackground;
+            BackgroundTextureKey = textureKeyForBackground;
+            SceneActivateKey = keyToActivateScene;
         }
 
-        public string BackgroundKey
-        {
-            get
-            {
-                return backgroundKey;
-            }
-
-            set
-            {
-                backgroundKey = value;
-            }
-        }
+       
     }
 }

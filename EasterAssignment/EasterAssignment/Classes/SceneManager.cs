@@ -6,35 +6,11 @@ using System.Threading.Tasks;
 
 namespace EasterAssignment.Classes
 {
-    public class SceneManager
+    public static class SceneManager
     {
-        private Scene activeScene;
-        private Scene previousScene;
-
-        public Scene ActiveScene
-        {
-            get
-            {
-                return activeScene;
-            }
-
-            set
-            {
-                activeScene = value;
-            }
-        }
-
-        public Scene PreviousScene
-        {
-            get
-            {
-                return previousScene;
-            }
-
-            set
-            {
-                previousScene = value;
-            }
-        }
+        public static Stack<Scene> AllScenes { get; set; }
+        public static Scene ActiveScene { get; set; }
+        public static Scene PreviousScene { get; set; }
+        
     }
 }
