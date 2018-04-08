@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EasterAssignment.Classes.ContentManagerClasses;
+using EasterAssignment.Classes.ServiceClasses;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -39,7 +41,8 @@ namespace EasterAssignment
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            GameInitializer gI = new GameInitializer(this, this.Content);
+            gI.InitializeTheGame();
             // TODO: use this.Content to load your game content here
         }
 
@@ -59,9 +62,12 @@ namespace EasterAssignment
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+          
 
+            if (InputEngine.IsKeyPressed(SceneManager.ChangeSceneKey))
+            {
+                SceneManager.AllScenes.Push(SceneManager.AllScenes.Pop());
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -74,6 +80,13 @@ namespace EasterAssignment
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+
+            foreach (var item in SceneManager.AllScenes.Peek().AllTheSpritesWithinTheScene)
+            {
+                item.Draw(spriteBatch);
+            }
+            
 
             // TODO: Add your drawing code here
 

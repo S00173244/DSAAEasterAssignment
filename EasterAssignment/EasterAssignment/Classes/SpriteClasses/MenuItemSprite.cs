@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using EasterAssignment.Classes.ServiceClasses;
+using EasterAssignment.Classes.ContentManagerClasses;
 
 namespace EasterAssignment.Classes
 {
-    class MenuItemSprite : BaseSprite
+    class MenuItemSprite : IBaseSprite
     {
         
         public string SpriteID { get; set; }
-
         public string SpriteTextureKey { get; set; }
-
         public Vector2 SpritePosition { get; set; }
         public string MenuItemName { get; set; }
         
@@ -34,6 +34,8 @@ namespace EasterAssignment.Classes
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
+            spriteBatch.Draw(TextureManager.AllTextures[SpriteTextureKey], SpritePosition, Color.White);
+            spriteBatch.DrawString(Helper.SpriteFont, MenuItemName, SpritePosition, Color.White);
             spriteBatch.End();
         }
     }

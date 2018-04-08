@@ -1,29 +1,56 @@
 ﻿using EasterAssignment.Classes;
+using EasterAssignment.Classes.ContentManagerClasses;
+using EasterAssignment.Classes.SceneClasses;
 using EasterAssignment.Classes.SpriteClasses;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
+using EasterAssignment.Classes.ServiceClasses;
 
 namespace EasterAssignment
 {
     public class GameInitializer
     {
         Random rn = new Random();
+        Game game;
+        ContentManager contentManager;
 
+        public GameInitializer(Game currentGame, ContentManager currentContentManager)
+        {
+            game = currentGame;
+            contentManager = currentContentManager;
+        }
         
+        public void InitializeTheGame()
+        {
+            CreateMap();
+            LoadContents();
+            CreateScenes();
+            SetupInputEngine();
+            LoadSpriteFont();
+            
+        }
+
         public void CreateScenes()
         {
             
             try
             {
-                Scene menuScene = new Scene("", Keys.Escape);
-                MenuItemSprite menu1 = new MenuItemSprite("MI1","Play", "", new Vector2());
-                MenuItemSprite menu2 = new MenuItemSprite("MI1", "HighScores", "", new Vector2());
-                MenuItemSprite menu3 = new MenuItemSprite("MI1", "Exit", "", new Vector2());
+                IScene menuScene = new MenuScene();
+                MenuItemSprite menu1 = new MenuItemSprite("MI1","Play", "rectangle", new Vector2(100,30));
+                MenuItemSprite menu2 = new MenuItemSprite("MI2", "HighScores", "rectangle", new Vector2(100,50));
+                MenuItemSprite menu3 = new MenuItemSprite("MI3", "Exit", "rectangle", new Vector2(100,70));
+                menuScene.AllTheSpritesWithinTheScene.Add(menu1);
+                menuScene.AllTheSpritesWithinTheScene.Add(menu2);
+                menuScene.AllTheSpritesWithinTheScene.Add(menu3);
+                SceneManager.AllScenes.Push(menuScene);
 
             }
             catch (Exception e)
@@ -35,6 +62,13 @@ namespace EasterAssignment
 
             try
             {
+               
+
+                IScene playScene = new PlayScene();
+                playScene.AllTheSpritesWithinTheScene.Add(CreatePlayer());
+                playScene.AllTheSpritesWithinTheScene.AddRange(CreateCollectables(rn.Next(10,20)));
+
+                SceneManager.AllScenes.Push(playScene);
 
             }
             catch (Exception e)
@@ -85,6 +119,8 @@ namespace EasterAssignment
             try
             {
                 PlayerSprite player = new PlayerSprite("P1", new Vector2(rn.Next((int)Map.MapSize.X), rn.Next((int)Map.MapSize.Y)), "");
+                SetupCamera(player);
+                
                 return player;
             }
             catch (Exception e)
@@ -95,10 +131,45 @@ namespace EasterAssignment
                       
         }
 
+        public void LoadContents()
+        {
+            try
+            {
+                TextureManager.AllTextures = Loader.ContentLoad<Texture2D>(contentManager, "Images");
+            }
+            catch (Exception e)
+            {
 
+                Console.WriteLine("Error while loading textures : {0}", e.Message);
+            }
+
+            try
+            {
+                AudioManager.AllSoundEffects = Loader.ContentLoad<SoundEffect>(contentManager, "Sounds");
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("Error while loading sounds : {0}", e.Message);
+            }
+        }
        
 
+        public void SetupCamera(PlayerSprite player)
+        {
+            new Camera(game, player.SpritePosition, Map.MapSize);
+            Camera.player = player;
+        }
 
+        public void SetupInputEngine()
+        {
+            new InputEngine(game);
+        }
+
+        public void LoadSpriteFont()
+        {
+            Helper.SpriteFont = contentManager.Load<SpriteFont>("Fonts/menuItemFont");
+        }
 
     }
 }

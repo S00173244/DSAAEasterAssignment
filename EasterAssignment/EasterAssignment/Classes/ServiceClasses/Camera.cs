@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 
 
-namespace CameraNS
+namespace EasterAssignment.Classes.ServiceClasses
 {
     class Camera : GameComponent
     {
         static Vector2 _camPos = Vector2.Zero;
         static Vector2 _worldBound;
+        public static PlayerSprite player;
         public static Matrix CurrentCameraTranslation
         {
             get
@@ -54,15 +55,15 @@ namespace CameraNS
             if (InputEngine.IsKeyHeld(Keys.Up))
                 move(new Vector2(0, -1) * CameraSpeed, Game.GraphicsDevice.Viewport);
 
-            TilePlayer p = (TilePlayer)Game.Services.GetService(typeof(TilePlayer));
-            if (p != null)
+            //TilePlayer p = (TilePlayer)Game.Services.GetService(typeof(TilePlayer));
+            if (player != null)
             {
-                follow(p.PixelPosition, Game.GraphicsDevice.Viewport);
+                follow(player.SpritePosition, Game.GraphicsDevice.Viewport);
 
                 //Make sure the player stays in the bounds
-                p.PixelPosition = Vector2.Clamp(p.PixelPosition, Vector2.Zero,
-                                                new Vector2(_worldBound.X - p.BoundingRectangle.Width,
-                                                            _worldBound.Y - p.BoundingRectangle.Height));
+                player.SpritePosition = Vector2.Clamp(player.SpritePosition, Vector2.Zero,
+                                                new Vector2(_worldBound.X - player.Bounds.Width,
+                                                            _worldBound.Y - player.Bounds.Height));
 
             }
             base.Update(gameTime);

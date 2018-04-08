@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using CameraNS;
-using Engine;
 using Microsoft.Xna.Framework.Input;
 using EasterAssignment.Classes.SpriteClasses;
+using EasterAssignment.Classes.ServiceClasses;
+using EasterAssignment.Classes.ContentManagerClasses;
 
 namespace EasterAssignment.Classes
 {
-    public class PlayerSprite :SpriteWithBounds
+    public class PlayerSprite :ISpriteWithBounds
     {
        
 
@@ -37,7 +37,7 @@ namespace EasterAssignment.Classes
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Camera.CurrentCameraTranslation);
-            
+            spriteBatch.Draw(TextureManager.AllTextures[SpriteTextureKey], SpritePosition, Color.White);
             spriteBatch.End();
         }
 

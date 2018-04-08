@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using CameraNS;
+using EasterAssignment.Classes.ServiceClasses;
+using EasterAssignment.Classes.ContentManagerClasses;
 
 namespace EasterAssignment.Classes.SpriteClasses
 {
-    public class Collectable : SpriteWithBounds
+    public class Collectable : ISpriteWithBounds
     {
         public Rectangle Bounds { get; set; }
 
@@ -29,7 +30,7 @@ namespace EasterAssignment.Classes.SpriteClasses
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Camera.CurrentCameraTranslation);
-
+            spriteBatch.Draw(TextureManager.AllTextures[SpriteTextureKey], SpritePosition, Color.White);
             spriteBatch.End();
         }
 

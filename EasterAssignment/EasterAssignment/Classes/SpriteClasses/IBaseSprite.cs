@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EasterAssignment.Classes
 {
-    public interface BaseSprite
+    public interface IBaseSprite
     {
         string SpriteID { get; set; }
         string SpriteTextureKey { get; set; }

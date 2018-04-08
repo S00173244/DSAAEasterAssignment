@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Devices.Sensors;
 #endif
 
-namespace Engine
+namespace EasterAssignment.Classes.ServiceClasses
 {
     public class InputEngine : GameComponent
     {
