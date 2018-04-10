@@ -11,8 +11,7 @@ namespace EasterAssignment.Classes
     {
         string BackgroundTextureKey { get; set; }
         List<IBaseSprite> AllTheSpritesWithinTheScene { get; set; }
-        Keys SceneActivateKey { get; set; }
-        bool IsActive { get; set; }
+      
        
         //public IScene(string textureKeyForBackground,Keys keyToActivateScene)
         //{

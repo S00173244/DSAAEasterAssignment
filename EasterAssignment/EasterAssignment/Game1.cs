@@ -13,6 +13,7 @@ namespace EasterAssignment
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SceneManager sceneManager = new SceneManager();
 
         public Game1()
         {
@@ -29,7 +30,7 @@ namespace EasterAssignment
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
         }
 
@@ -42,7 +43,7 @@ namespace EasterAssignment
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             GameInitializer gI = new GameInitializer(this, this.Content);
-            gI.InitializeTheGame();
+            sceneManager = gI.InitializeTheGame();
             // TODO: use this.Content to load your game content here
         }
 
@@ -62,12 +63,9 @@ namespace EasterAssignment
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-          
 
-            if (InputEngine.IsKeyPressed(SceneManager.ChangeSceneKey))
-            {
-                SceneManager.AllScenes.Push(SceneManager.AllScenes.Pop());
-            }
+
+            sceneManager.Update();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -82,10 +80,7 @@ namespace EasterAssignment
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-            foreach (var item in SceneManager.AllScenes.Peek().AllTheSpritesWithinTheScene)
-            {
-                item.Draw(spriteBatch);
-            }
+            sceneManager.Draw(spriteBatch);
             
 
             // TODO: Add your drawing code here

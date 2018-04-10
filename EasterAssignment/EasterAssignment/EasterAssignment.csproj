@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Classes\ContentManagerClasses\AudioManager.cs" />
     <Compile Include="Classes\Map.cs" />
+    <Compile Include="Classes\SceneClasses\HighscoreScene.cs" />
     <Compile Include="Classes\SceneClasses\MenuScene.cs" />
     <Compile Include="Classes\SceneClasses\PlayScene.cs" />
     <Compile Include="Classes\ServiceClasses\Helper.cs" />

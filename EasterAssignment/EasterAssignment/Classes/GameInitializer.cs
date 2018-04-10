@@ -28,29 +28,33 @@ namespace EasterAssignment
             contentManager = currentContentManager;
         }
         
-        public void InitializeTheGame()
+        public SceneManager InitializeTheGame()
         {
+            
+            Helper.CurrentGame = game;
             CreateMap();
             LoadContents();
-            CreateScenes();
+           
             SetupInputEngine();
             LoadSpriteFont();
-            
+            return CreateScenes(); ;
         }
 
-        public void CreateScenes()
+        public SceneManager CreateScenes()
         {
-            
+            SceneManager sceneManager = new SceneManager();
+            MenuScene menuScene = new MenuScene();
+
             try
             {
-                IScene menuScene = new MenuScene();
+                
                 MenuItemSprite menu1 = new MenuItemSprite("MI1","Play", "rectangle", new Vector2(100,30));
                 MenuItemSprite menu2 = new MenuItemSprite("MI2", "HighScores", "rectangle", new Vector2(100,50));
                 MenuItemSprite menu3 = new MenuItemSprite("MI3", "Exit", "rectangle", new Vector2(100,70));
-                menuScene.AllTheSpritesWithinTheScene.Add(menu1);
+                menuScene.AllTheSpritesWithinTheScene.Add(new MenuItemSprite("MI1", "Play", "rectangle", new Vector2(100, 30)));
                 menuScene.AllTheSpritesWithinTheScene.Add(menu2);
                 menuScene.AllTheSpritesWithinTheScene.Add(menu3);
-                SceneManager.AllScenes.Push(menuScene);
+                sceneManager.ActiveScene = menuScene;
 
             }
             catch (Exception e)
@@ -59,6 +63,7 @@ namespace EasterAssignment
 
             }
 
+            
 
             try
             {
@@ -68,7 +73,7 @@ namespace EasterAssignment
                 playScene.AllTheSpritesWithinTheScene.Add(CreatePlayer());
                 playScene.AllTheSpritesWithinTheScene.AddRange(CreateCollectables(rn.Next(10,20)));
 
-                SceneManager.AllScenes.Push(playScene);
+                sceneManager.AllScenes.Push(playScene);
 
             }
             catch (Exception e)
@@ -76,6 +81,8 @@ namespace EasterAssignment
                 Console.WriteLine("Error while creating Play Scene : {0}", e.Message);
                 
             }
+
+            return sceneManager;
         }
         public void CreateMap()
         {

@@ -7,16 +7,18 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using EasterAssignment.Classes.ServiceClasses;
 using EasterAssignment.Classes.ContentManagerClasses;
+using EasterAssignment.Classes.SpriteClasses;
 
 namespace EasterAssignment.Classes
 {
-    class MenuItemSprite : IBaseSprite
+    public class MenuItemSprite : ISpriteWithBounds
     {
         
         public string SpriteID { get; set; }
         public string SpriteTextureKey { get; set; }
         public Vector2 SpritePosition { get; set; }
         public string MenuItemName { get; set; }
+        public Rectangle Bounds { get; set; }
         
         public MenuItemSprite(string ID,string ItemName, string TextureKey,Vector2 Position)
         {
