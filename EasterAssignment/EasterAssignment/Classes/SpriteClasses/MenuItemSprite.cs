@@ -26,6 +26,7 @@ namespace EasterAssignment.Classes
             MenuItemName = ItemName;
             SpriteTextureKey = TextureKey;
             SpritePosition = Position;
+            Bounds = new Rectangle((int)Position.X, (int)Position.Y, TextureManager.AllTextures[TextureKey].Width, TextureManager.AllTextures[TextureKey].Height);
         }
 
         public void Update(GameTime gameTime)

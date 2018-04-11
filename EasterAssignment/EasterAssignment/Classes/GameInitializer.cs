@@ -30,7 +30,8 @@ namespace EasterAssignment
         
         public SceneManager InitializeTheGame()
         {
-            
+            game.IsMouseVisible = true;
+           
             Helper.CurrentGame = game;
             CreateMap();
             LoadContents();
@@ -43,15 +44,17 @@ namespace EasterAssignment
         public SceneManager CreateScenes()
         {
             SceneManager sceneManager = new SceneManager();
-            MenuScene menuScene = new MenuScene();
+            sceneManager.AllScenes = new Stack<IScene>();
+            
 
             try
             {
-                
-                MenuItemSprite menu1 = new MenuItemSprite("MI1","Play", "rectangle", new Vector2(100,30));
-                MenuItemSprite menu2 = new MenuItemSprite("MI2", "HighScores", "rectangle", new Vector2(100,50));
-                MenuItemSprite menu3 = new MenuItemSprite("MI3", "Exit", "rectangle", new Vector2(100,70));
-                menuScene.AllTheSpritesWithinTheScene.Add(new MenuItemSprite("MI1", "Play", "rectangle", new Vector2(100, 30)));
+                MenuScene menuScene = new MenuScene();
+                menuScene.AllTheSpritesWithinTheScene = new List<IBaseSprite>();
+                MenuItemSprite menu1 = new MenuItemSprite("MI1","Play", "rectangle", new Vector2(100,100));
+                MenuItemSprite menu2 = new MenuItemSprite("MI2", "HighScores", "rectangle", new Vector2(100,300));
+                MenuItemSprite menu3 = new MenuItemSprite("MI3", "Exit", "rectangle", new Vector2(100,500));
+                menuScene.AllTheSpritesWithinTheScene.Add(menu1);
                 menuScene.AllTheSpritesWithinTheScene.Add(menu2);
                 menuScene.AllTheSpritesWithinTheScene.Add(menu3);
                 sceneManager.ActiveScene = menuScene;

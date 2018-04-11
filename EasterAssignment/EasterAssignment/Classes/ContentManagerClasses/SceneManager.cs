@@ -12,7 +12,9 @@ namespace EasterAssignment.Classes.ContentManagerClasses
 {
     public class SceneManager
     {
+        
         public Stack<IScene> AllScenes { get; set; }
+        
         public IScene ActiveScene { get; set; }
         public IScene PreviousScene { get; set; }
         public static Keys ChangeSceneKey = Keys.Escape;
@@ -22,26 +24,32 @@ namespace EasterAssignment.Classes.ContentManagerClasses
             if (ActiveScene.GetType().Name == "MenuScene")
             {
 
-                MenuItemSprite s = ActiveScene.AllTheSpritesWithinTheScene.OfType<MenuItemSprite>().First(x => x.Bounds.Contains(InputEngine.MousePosition) && InputEngine.IsMouseLeftClick());
+                
 
-                if (s.SpriteID == "Play")
+                MenuItemSprite s = ActiveScene.AllTheSpritesWithinTheScene.OfType<MenuItemSprite>().FirstOrDefault(x => x.Bounds.Contains(InputEngine.MousePosition) && InputEngine.IsMouseLeftClick());
+                
+                if(s!= null)
                 {
-                    PreviousScene = ActiveScene;
-                    ActiveScene = AllScenes.Pop();
-                    AllScenes.Push(PreviousScene);
+                    if (s.SpriteID == "MI1")
+                    {
+                        PreviousScene = ActiveScene;
+                        ActiveScene = AllScenes.Pop();
+                        AllScenes.Push(PreviousScene);
 
 
+                    }
+                    else if (s.SpriteID == "MI2")
+                    {
+                        PreviousScene = ActiveScene;
+                        ActiveScene = CreateHighscoreScene();
+                        AllScenes.Push(PreviousScene);
+                    }
+                    else if (s.SpriteID == "MI3")
+                    {
+                        Helper.CurrentGame.Exit();
+                    }
                 }
-                else if (s.SpriteID == "Highscores")
-                {
-                    PreviousScene = ActiveScene;
-                    ActiveScene = CreateHighscoreScene();
-                    AllScenes.Push(PreviousScene);
-                }
-                else if (s.SpriteID == "Exit")
-                {
-                    Helper.CurrentGame.Exit();
-                }
+                
             }else if (InputEngine.IsKeyPressed(ChangeSceneKey) )
             {
                 if(ActiveScene.GetType().Name == "PlayScene")
