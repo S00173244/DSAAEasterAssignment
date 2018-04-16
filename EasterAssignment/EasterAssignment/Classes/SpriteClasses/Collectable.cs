@@ -20,12 +20,16 @@ namespace EasterAssignment.Classes.SpriteClasses
 
         public string SpriteTextureKey { get; set; }
 
+        public bool HasCollidedWithPlayer { get; set; }
 
         public Collectable(string ID ,Vector2 Position, string TextureKey)
         {
             SpriteID = ID;
             SpritePosition = Position;
             SpriteTextureKey = TextureKey;
+            HasCollidedWithPlayer = false;
+            Bounds = new Rectangle((int)Position.X, (int)Position.Y, TextureManager.AllTextures[TextureKey].Width, TextureManager.AllTextures[TextureKey].Height);
+
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -36,7 +40,17 @@ namespace EasterAssignment.Classes.SpriteClasses
 
         public void Update(GameTime gameTime)
         {
-            
+            HasCollidedWithPlayer = CheckIfCollidedWithPlayer();
+            if (HasCollidedWithPlayer)
+            {
+                Helper.currentPlayer.Score += 10;
+                Console.WriteLine(Helper.currentPlayer.Score);
+            }
+        }
+
+        public bool CheckIfCollidedWithPlayer()
+        {
+            return Helper.currentPlayer.Bounds.Intersects(Bounds);
         }
     }
 }

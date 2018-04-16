@@ -12,6 +12,9 @@ namespace EasterAssignment.Classes.ServiceClasses
     {
         public static SpriteFont SpriteFont;
         public static Game CurrentGame;
+        public static Random random = new Random();
+        public static InputEngine inputEngine;
+        public static PlayerSprite currentPlayer;
         
         
         

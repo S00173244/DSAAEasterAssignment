@@ -46,6 +46,7 @@ namespace EasterAssignment
             spriteBatch = new SpriteBatch(GraphicsDevice);
             GameInitializer gI = new GameInitializer(this, this.Content);
             sceneManager = gI.InitializeTheGame();
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -67,7 +68,7 @@ namespace EasterAssignment
         {
 
 
-            sceneManager.Update();
+            sceneManager.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);

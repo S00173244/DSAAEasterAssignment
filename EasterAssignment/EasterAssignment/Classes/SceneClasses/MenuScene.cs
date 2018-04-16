@@ -1,5 +1,7 @@
 ﻿using EasterAssignment.Classes.ContentManagerClasses;
 using EasterAssignment.Classes.ServiceClasses;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,20 @@ namespace EasterAssignment.Classes.SceneClasses
     {
         public string BackgroundTextureKey { get; set; }
         public List<IBaseSprite> AllTheSpritesWithinTheScene { get; set; }
-     
 
 
-       
+        public void Update(GameTime gameTime) { }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(TextureManager.AllTextures[BackgroundTextureKey], Vector2.Zero, Color.White);
+
+
+            spriteBatch.End();
+            AllTheSpritesWithinTheScene.ForEach(c => c.Draw(spriteBatch));
+        }
+
 
 
     }

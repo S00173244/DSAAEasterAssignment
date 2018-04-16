@@ -11,19 +11,19 @@ using EasterAssignment.Classes.SpriteClasses;
 
 namespace EasterAssignment.Classes
 {
-    public class MenuItemSprite : ISpriteWithBounds
+    public class HighscoreItemSprite : ISpriteWithBounds
     {
         
         public string SpriteID { get; set; }
         public string SpriteTextureKey { get; set; }
         public Vector2 SpritePosition { get; set; }
-        public string MenuItemName { get; set; }
+        public string HighScoreItemName { get; set; }
         public Rectangle Bounds { get; set; }
         
-        public MenuItemSprite(string ID,string ItemName, string TextureKey,Vector2 Position)
+        public HighscoreItemSprite(string ID,string ItemName, string TextureKey,Vector2 Position)
         {
             SpriteID = ID;
-            MenuItemName = ItemName;
+            HighScoreItemName = ItemName;
             SpriteTextureKey = TextureKey;
             SpritePosition = Position;
             Bounds = new Rectangle((int)Position.X, (int)Position.Y, TextureManager.AllTextures[TextureKey].Width, TextureManager.AllTextures[TextureKey].Height);
@@ -37,11 +37,8 @@ namespace EasterAssignment.Classes
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            
-            spriteBatch.Draw(TextureManager.AllTextures[SpriteTextureKey],SpritePosition, Color.White);
-            spriteBatch.DrawString(Helper.SpriteFont, MenuItemName, SpritePosition, Color.White);
-            //spriteBatch.DrawString(Helper.SpriteFont, Bounds.ToString(), SpritePosition, Color.White);
-            
+            spriteBatch.Draw(TextureManager.AllTextures[SpriteTextureKey], SpritePosition, Color.White);
+            spriteBatch.DrawString(Helper.SpriteFont, HighScoreItemName, SpritePosition, Color.White);
             spriteBatch.End();
         }
     }

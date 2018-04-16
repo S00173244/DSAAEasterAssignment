@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classes\ContentManagerClasses\AudioManager.cs" />
+    <Compile Include="Classes\HighScoreData.cs" />
     <Compile Include="Classes\Map.cs" />
     <Compile Include="Classes\SceneClasses\HighscoreScene.cs" />
     <Compile Include="Classes\SceneClasses\MenuScene.cs" />
@@ -53,10 +54,14 @@
     <Compile Include="Classes\ServiceClasses\InputEngine.cs" />
     <Compile Include="Classes\SpriteClasses\Collectable.cs" />
     <Compile Include="Classes\SpriteClasses\ISpriteWithBounds.cs" />
+    <Compile Include="Classes\SpriteClasses\HighscoreItemSprite.cs" />
     <Compile Include="Classes\SpriteClasses\MenuItemSprite.cs" />
     <Compile Include="Classes\SpriteClasses\PlayerSprite.cs" />
     <Compile Include="Classes\SceneClasses\IScene.cs" />
     <Compile Include="Classes\ContentManagerClasses\SceneManager.cs" />
+    <Compile Include="Classes\SpriteClasses\DespawnPoint.cs" />
+    <Compile Include="Classes\SpriteClasses\Projectile.cs" />
+    <Compile Include="Classes\SpriteClasses\SpawnPoint.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Classes\GameInitializer.cs" />
     <Compile Include="Classes\ContentManagerClasses\Loader.cs" />
@@ -72,7 +77,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\cannon.png" />
+    <Content Include="Content\Images\collectable.png" />
+    <Content Include="Content\Images\despawn.png" />
+    <Content Include="Content\Images\enemy.png" />
+    <Content Include="Content\Images\highscore.jpg" />
+    <Content Include="Content\Images\menu.jpg" />
+    <Content Include="Content\Images\play.jpg" />
+    <Content Include="Content\Images\player.png" />
     <Content Include="Content\Images\rectangle.png" />
+    <Content Include="Content\Images\spawn.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

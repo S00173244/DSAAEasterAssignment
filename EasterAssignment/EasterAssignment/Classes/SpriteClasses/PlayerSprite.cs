@@ -25,13 +25,17 @@ namespace EasterAssignment.Classes
         public string SpriteTextureKey { get; set; }
         public int Speed { get; set; }
         public Rectangle Bounds { get; set; }
+        public int Score { get; set; }
 
+        public PlayerSprite() { }
         public PlayerSprite(string ID, Vector2 Position, string TextureKey)
         {
             SpriteID = ID;
             SpritePosition = Position;
             SpriteTextureKey = TextureKey;
-            
+            Bounds = new Rectangle((int)Position.X, (int)Position.Y, TextureManager.AllTextures[TextureKey].Width, TextureManager.AllTextures[TextureKey].Height);
+            Score = 0;
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -67,7 +71,7 @@ namespace EasterAssignment.Classes
                 direction.Y = 1;
             }
 
-            SpritePosition = SpritePosition * Speed * direction;
+            SpritePosition = SpritePosition + Speed * direction;
         }
     }
 }
